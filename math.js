@@ -47,6 +47,19 @@ console.log({
   areaTriangulo,
 });
 
+function calcularTrianguloEscaleno(lado1, lado2, lado3) {
+  const perimetro = lado1 + lado2 + lado3;
+  const semiperimetro = perimetro / 2;
+  const altura = (2/lado1) * Math.sqrt(semiperimetro * (semiperimetro - lado1) * (semiperimetro - lado2) * (semiperimetro - lado3));
+  
+  return {
+    perimetro: perimetro,
+    altura: altura,
+    area: (lado1 * altura) / 2,
+    areaHeron:  Math.sqrt(semiperimetro * (semiperimetro - lado1) * (semiperimetro - lado2) * (semiperimetro - lado3)),
+  }
+}
+
 console.groupEnd('Triangulo');
 
 console.group('Circulo');
