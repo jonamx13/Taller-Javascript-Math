@@ -1,16 +1,35 @@
 //Mi solucion
 
 const precio = document.querySelector('#precio');
-const descuento = document.querySelector('#descuento');
 const btnResultado = document.querySelector('#btnCalcular');
 const resultado = document.querySelector('.resultado');
+const cupones = document.querySelector('#cupon1');
 
 btnResultado.addEventListener('click', resultadoDisc);
 
 function resultadoDisc() {
-    const calculoPerc = (precio.value * (100 - descuento.value) / 100);
+    let descuento = 0;
 
-    resultado.innerText = `Precio con %${descuento.value} de descuento: $${calculoPerc}`;
+    //Si hay cupones
+    if (cupon1.checked)  { descuento += 15 }
+    if (cupon2.checked)  { descuento += 10 }
+    if (cupon3.checked)  { descuento += 12 }
+    
+    //Calculo del precio final
+    const calculoPrecio = (precio.value * (100 - descuento) / 100);
+
+    //Resultado
+    switch(true) {
+        case (descuento >= 100):
+            resultado.innerHTML = "Nada es gratis";
+            break;
+        case (descuento == 0):
+            resultado.innerHTML = `El artículo no tiene descuento, el precio se queda en ${calculoPrecio}`;
+            break;
+        default:
+            resultado.innerText = `Precio con %${descuento} de descuento: $${calculoPrecio}`;
+    }
+    
 }
 
 //Solucion profesor
