@@ -3,7 +3,6 @@
 const precio = document.querySelector('#precio');
 const btnResultado = document.querySelector('#btnCalcular');
 const resultado = document.querySelector('.resultado');
-const cupones = document.querySelector('#cupon1');
 
 btnResultado.addEventListener('click', resultadoDisc);
 
@@ -35,7 +34,7 @@ function resultadoDisc() {
 //Solucion profesor
 
 const inputPrice = document.querySelector('#price');
-const inputDiscount = document.querySelector('#discount');
+const inputCoupon = document.querySelector('#coupon');
 const btn = document.querySelector('#calcular');
 const pResult = document.querySelector('#result');
 
@@ -45,19 +44,39 @@ function calcularPrecioDescuento() {
     //(P * (100 - D)) / 100
 
     const price = Number(inputPrice.value);
-    const discount = Number(inputDiscount.value);
+    const coupon = inputCoupon.value;
 
     // Que pasa si no introducimos los dos valores
-    if(!price || !discount) {
+    if(!price || !coupon) {
         pResult.innerText = 'CHANCLA por favor rellena el formulario';
         return;
     }
 
-    // Limitar el descuento a 100
-    if(discount > 100) {
-        pResult.innerText = 'Ajá, ya quisieras, no te vamos a dar plata, PAGA!';
-        return;
+    let discount;
+
+    switch(coupon) {
+        case 'JuanDC_es_Batman' :
+            discount = 30;
+            break;
+
+        case 'no_le_digas_a_nadie' :
+            discount = 25;
+
+        default:
+            pResult.innerText = 'El cupón no es válido';
+            return;
     }
+
+    /*  
+    if (coupon == 'JuanDC_es_Batman') {
+        discount = 30;
+    } else if (coupon == 'no_le_digas_a_nadie') {
+        discount = 25;
+    } else {
+        pResult.innerText = 'El cupón no es válido';
+        return;
+    } 
+    */
 
     const newPrice = (price * (100 - discount) / 100);
 
