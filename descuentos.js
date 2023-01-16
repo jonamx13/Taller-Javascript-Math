@@ -40,9 +40,30 @@ const pResult = document.querySelector('#result');
 
 btn.addEventListener('click', calcularPrecioDescuento);
 
+const arrayUObjeto = undefined; // ['cupones': descuento] {}?
+
+/* const couponsObj = {
+    'JuanDC_es_Batman': 30,
+    '3456789': 25,
+    '123': 15,
+}; */
+
+const couponList = [];
+couponList.push({
+    name: 'JuanDC_es_Batman',
+    discount: 30,
+});
+couponList.push({
+    name: 'peso_es_un_secreto',
+    discount: 25,
+});
+couponList.push({
+    name: 'no_le_digas_a_nadie',
+    discount: 15,
+});
+
 function calcularPrecioDescuento() {
     //(P * (100 - D)) / 100
-
     const price = Number(inputPrice.value);
     const coupon = inputCoupon.value;
 
@@ -53,7 +74,35 @@ function calcularPrecioDescuento() {
     }
 
     let discount;
+    
+    function isCouponInArray(couponElement) { // {name, discount}
+        return couponElement.name == coupon;
+    }
 
+    const couponInArray = couponList.find(isCouponInArray); // [{}]
+
+    if(couponInArray) {
+        discount = couponInArray.discount;
+    } else {
+        pResult.innerText = 'El cupón no es válido';
+        return;
+    }
+
+    console.log({
+        coupon,
+        discount,
+        couponInArray,
+        couponList,
+    });
+
+    /* if(couponsObj[coupon]) {
+        discount = couponsObj[coupon];
+    } else {
+        pResult.innerText = 'El cupón no es válido';
+        return;
+    } */
+
+    /*  
     switch(coupon) {
         case 'JuanDC_es_Batman' :
             discount = 30;
@@ -66,6 +115,7 @@ function calcularPrecioDescuento() {
             pResult.innerText = 'El cupón no es válido';
             return;
     }
+    */
 
     /*  
     if (coupon == 'JuanDC_es_Batman') {
