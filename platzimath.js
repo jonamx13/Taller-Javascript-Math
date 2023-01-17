@@ -34,14 +34,16 @@ function isArrayEven(...arr) {
 }
 
 function calculateMedian(...list) {
+    const orderedList = list.sort((a,b) => a - b);
     const isListEven = isArrayEven(...list);
 
-    console.log(isListEven);
-
+    console.log(`Sorted list: ${orderedList}`);
+    console.log(`isListEven: ${isListEven}`);
+    
     if (isListEven) {
         //Central values
-        console.log(list[(list.length / 2) - 1 ]);
-        console.log(list[(list.length / 2)])
+        console.log(`First central value: ${list[(list.length / 2) - 1 ]}`);
+        console.log(`Second central value: ${list[(list.length / 2)]}`);
 
         // Operation
         const centerIndexEvenList = 
@@ -58,7 +60,7 @@ function calculateMedian(...list) {
         const medianOddList = list[centerIndexOddList];
 
         //Result
-        console.log(centerIndexOddList);
+        console.log(`Central index: ${centerIndexOddList}`);
         console.log(medianOddList);
 
         return medianOddList;
@@ -88,7 +90,8 @@ function esImpar(lista) {
     return lista.length % 2;
 }
 
-function calcularMediana(lista) {
+function calcularMediana(listaDesordenada) {
+    const lista = ordenarLista(listaDesordenada);
     const listaEsPar = esPar(lista);
 
     if (listaEsPar) {
@@ -142,4 +145,29 @@ function calcularPromedioReduce(lista) {
     const promedio = sumaLista / lista.length;
     console.log(promedio);
     // return promedio;
+}
+
+function ordenarLista(listaDesordenada) {
+    function ordenarListaSort(valorAcumulado, nuevoValor) {
+        /*
+        if (valorAcumulado > nuevoValor) {
+            return 1;
+        } else if (valorAcumulado == nuevoValor) {
+            return 0;
+        } else if (valorAcumulado < nuevoValor) {
+            return -1;
+        }
+        */
+        return nuevoValor - valorAcumulado;
+        // return valorAcumulado - nuevoValor;
+        // return 5 - 10 -> -5;
+        // return 5 - 5 -> 0;
+        // return 10 - 5 -> 5;
+    }
+
+    // const lista = listaDesordenada.sort(ordenarListaSort);
+
+    const  lista = listaDesordenada.sort((a,b) => a-b);
+
+    return lista;
 }
