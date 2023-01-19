@@ -93,7 +93,7 @@ function calculateMode(...list) {
     if (lastKey == orderedArray[orderedArray.length -2][1]) {
         return`There's no mode`;
     } else {
-        return `Mode is: ${lastKey} with ${lastValue} appearances`;
+        return `Mode is: ${lastKey} with: ${lastValue} appearances`;
     }
 
 }
