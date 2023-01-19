@@ -86,14 +86,14 @@ function calculateMode(...list) {
     //Ordering appearances number & getting last key
     const arrayList = Object.entries(input);
     const orderedArray = bidimentionalListSort(arrayList);
-    console.log(orderedArray);
     const lastKey = orderedArray[orderedArray.length - 1][0];
-    
+    const lastValue = orderedArray[orderedArray.length - 1][1];
+
     //Check if there are more than one mode
     if (lastKey == orderedArray[orderedArray.length -2][1]) {
         return`There's no mode`;
     } else {
-        return `Mode is: ${lastKey}`;
+        return `Mode is: ${lastKey} with ${lastValue} appearances`;
     }
 
 }
