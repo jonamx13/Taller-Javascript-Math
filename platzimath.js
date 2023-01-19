@@ -67,6 +67,36 @@ function calculateMedian(...list) {
     }
 }
 
+function bidimentionalListSort(list) {
+
+    const  orderedList = list.sort((a,b) => a[1]-b[1]);
+
+    return orderedList;
+}
+
+function calculateMode(...list) {
+    const input = {};
+
+    //Assign appearances
+    list.forEach(val =>
+        input[val]
+        ? input[val] += 1
+        : input[val] = 1);
+    
+    //Ordering appearances number & getting last key
+    const arrayList = Object.entries(input);
+    const orderedArray = bidimentionalListSort(arrayList);
+    console.log(orderedArray);
+    const lastKey = orderedArray[orderedArray.length - 1][0];
+    
+    //Check if there are more than one mode
+    if (lastKey == orderedArray[orderedArray.length -2][1]) {
+        return`There's no mode`;
+    } else {
+        return `Mode is: ${lastKey}`;
+    }
+
+}
 
 ///////////// Solucion profesor
 
@@ -97,7 +127,7 @@ function calcularMediana(listaDesordenada) {
 
     if (listaEsPar) {
          const indexMitad1ListaPar = (lista.length /  2)  - 1;
-        const indexMitad2ListaPar = lista.lenght / 2; 
+        const indexMitad2ListaPar = lista.length / 2; 
 
         /* 
         const mitad1ListaPar = lista[(lista.length / 2)  - 1];
@@ -173,6 +203,8 @@ function ordenarLista(listaDesordenada) {
     return lista;
 }
 
+
+
 function calcularModa(lista) {
     const listaCount = {};
 
@@ -186,5 +218,6 @@ function calcularModa(lista) {
         }
     }
     
-    console.log(listaCount);
+    const listaArray = Object.entries(listaCount);
+    console.log({listaCount, listaArray});
 }
