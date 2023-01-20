@@ -67,9 +67,9 @@ function calculateMedian(...list) {
     }
 }
 
-function bidimentionalListSort(list) {
+function bidimentionalListSort(list, arrayIndex) {
 
-    const  orderedList = list.sort((a,b) => a[1]-b[1]);
+    const  orderedList = list.sort((a,b) => a[arrayIndex]-b[arrayIndex]);
 
     return orderedList;
 }
@@ -85,12 +85,12 @@ function calculateMode(...list) {
     
     //Ordering appearances number & getting last key
     const arrayList = Object.entries(input);
-    const orderedArray = bidimentionalListSort(arrayList);
+    const orderedArray = bidimentionalListSort(arrayList, 1);
     const lastKey = orderedArray[orderedArray.length - 1][0];
     const lastValue = orderedArray[orderedArray.length - 1][1];
-
+    
     //Check if there are more than one mode
-    if (lastKey == orderedArray[orderedArray.length -2][1]) {
+    if (lastValue == orderedArray[orderedArray.length -2][1]) {
         return`There's no mode`;
     } else {
         return `Mode is: ${lastKey} with: ${lastValue} appearances`;
@@ -202,6 +202,16 @@ function ordenarLista(listaDesordenada) {
 
     return lista;
 }
+// [ [0,1], [0,1], [0,1] ]
+function ordenarListaBidimensional(listaDesordenada) {
+    function ordenarListaSort(valorAcumulado, nuevoValor) {
+        
+        return nuevoValor[1] - valorAcumulado[1];
+    }
+    const lista = listaDesordenada.sort(ordenarListaSort);
+
+    return lista;
+}
 
 
 
@@ -219,5 +229,10 @@ function calcularModa(lista) {
     }
     
     const listaArray = Object.entries(listaCount);
-    console.log({listaCount, listaArray});
+    const listaOrdenada = ordenarListaBidimensional(listaArray, 1);
+    const listaMaxNumber = listaOrdenada[listaOrdenada.length - 1];
+    const moda = listaMaxNumber;
+    // console.log({listaCount, listaArray, listaOrdenada, listaMaxNumber});
+    //console.log('La moda es: ' + listaMaxNumber[0]);
+    return moda;
 }
