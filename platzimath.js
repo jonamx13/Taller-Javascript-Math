@@ -1,6 +1,15 @@
+/* class PlatziMath {
+    static esPar() {}
+    static esImpar() {}
+    static calcularMediana() {}
+} */
+
+const PlatziMath = {};
+const MyMath = {};
+
 ///////////// Mi solucion
 
-function promedioCicloFor(...nums) {
+MyMath.promedioCicloFor = function promedioCicloFor(...nums) {
     const numeros = nums;
     let total = 0;
 
@@ -10,7 +19,7 @@ function promedioCicloFor(...nums) {
     return total / numeros.length
 }
 
-function promedioReduce(...nums) {
+MyMath.promedioReduce = function promedioReduce(...nums) {
     const numeros = nums;
     
 /*     function sumarNumeros(valorInicial, nuevoValor) {
@@ -26,14 +35,14 @@ function promedioReduce(...nums) {
     return total / numeros.length;
 }
 
-function isArrayEven(...arr) {
+MyMath.isArrayEven = function isArrayEven(...arr) {
     //Ternary option
     return arr.length % 2 == 0
     ? true
     : false
 }
 
-function calculateMedian(...list) {
+MyMath.calculateMedian = function calculateMedian(...list) {
     const orderedList = list.sort((a,b) => a - b);
     const isListEven = isArrayEven(...list);
 
@@ -67,14 +76,14 @@ function calculateMedian(...list) {
     }
 }
 
-function bidimentionalListSort(list, arrayIndex) {
+MyMath.bidimentionalListSort = function bidimentionalListSort(list, arrayIndex) {
 
     const  orderedList = list.sort((a,b) => a[arrayIndex]-b[arrayIndex]);
 
     return orderedList;
 }
 
-function calculateMode(...list) {
+MyMath.calculateMode = function calculateMode(...list) {
     const input = {};
 
     //Assign appearances
@@ -101,7 +110,7 @@ function calculateMode(...list) {
 ///////////// Solucion profesor
 
 // [1,2,3,4]
-function calcularPromedioCicloFor(lista) {
+PlatziMath.calcularPromedioCicloFor = function calcularPromedioCicloFor(lista) {
     let sumaLista = 0;
 
     for (let i = 0; i < lista.length; i++) {
@@ -113,15 +122,15 @@ function calcularPromedioCicloFor(lista) {
     return promedio;
 }
 
-function esPar(lista) {
+PlatziMath.esPar = function esPar(lista) {
     return !(lista.length % 2);
 }
 
-function esImpar(lista) {
+PlatziMath.esImpar = function esImpar(lista) {
     return lista.length % 2;
 }
 
-function calcularMediana(listaDesordenada) {
+PlatziMath.calcularMediana = function calcularMediana(listaDesordenada) {
     const lista = ordenarLista(listaDesordenada);
     const listaEsPar = esPar(lista);
 
@@ -158,7 +167,7 @@ function calcularMediana(listaDesordenada) {
     }
 }
 
-function calcularPromedioReduce(lista) {
+PlatziMath.calcularPromedioReduce = function calcularPromedioReduce(lista) {
      function sumarTodosElementos(valorAcumulado, nuevoValor) {
         return valorAcumulado + nuevoValor;
     }
@@ -178,7 +187,7 @@ function calcularPromedioReduce(lista) {
     // return promedio;
 }
 
-function ordenarLista(listaDesordenada) {
+PlatziMath.ordenarLista = function ordenarLista(listaDesordenada) {
     function ordenarListaSort(valorAcumulado, nuevoValor) {
         /*
         if (valorAcumulado > nuevoValor) {
@@ -203,7 +212,7 @@ function ordenarLista(listaDesordenada) {
     return lista;
 }
 // [ [0,1], [0,1], [0,1] ]
-function ordenarListaBidimensional(listaDesordenada) {
+PlatziMath.ordenarListaBidimensional = function ordenarListaBidimensional(listaDesordenada) {
     function ordenarListaSort(valorAcumulado, nuevoValor) {
         
         return nuevoValor[1] - valorAcumulado[1];
@@ -213,9 +222,7 @@ function ordenarListaBidimensional(listaDesordenada) {
     return lista;
 }
 
-
-
-function calcularModa(lista) {
+PlatziMath.calcularModa = function calcularModa(lista) {
     const listaCount = {};
 
     for (let i = 0; i < lista.length; i++) {
