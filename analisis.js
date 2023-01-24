@@ -57,6 +57,27 @@ function payRaise(nombrePersona) {
     return `Your next salary should increase to $${result}`
 }
 
+const companies = {}
+
+salarios.forEach(persona => {
+    const jobs = persona.trabajos;
+    jobs.forEach(job => {
+        //Agregar empresa
+        if(!companies[job]) {
+            companies[job.empresa] = {};
+        }
+        //Agregar salario en ese año
+        if(!companies[job.empresa][job.year]) {
+            companies[job.empresa][job.year] = []
+        }
+
+        
+        
+    })
+})
+
+console.log(companies)
+
 ///////Solucion Profe///////
 function proyeccionPorPersona(nombrePersona) {
     const trabajos = encontrarPersona(nombrePersona).trabajos;
@@ -80,3 +101,15 @@ function proyeccionPorPersona(nombrePersona) {
 
     return nuevoSalario;
 }
+
+//Análisis empresarial
+ /* {
+    Industrias Mokepon: {
+        2018: [salario, salaros]
+        2019:
+    }
+    Industrias Mokepon: {}
+    Industrias Mokepon: {}
+    Industrias Mokepon: {}
+ }
+  */
