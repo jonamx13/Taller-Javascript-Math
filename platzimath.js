@@ -44,7 +44,7 @@ MyMath.isArrayEven = function isArrayEven(...arr) {
 
 MyMath.calculateMedian = function calculateMedian(...list) {
     const orderedList = list.sort((a,b) => a - b);
-    const isListEven = isArrayEven(...list);
+    const isListEven = MyMath.isArrayEven(...list);
 
     console.log(`Sorted list: ${orderedList}`);
     console.log(`isListEven: ${isListEven}`);
@@ -94,7 +94,7 @@ MyMath.calculateMode = function calculateMode(...list) {
     
     //Ordering appearances number & getting last key
     const arrayList = Object.entries(input);
-    const orderedArray = bidimentionalListSort(arrayList, 1);
+    const orderedArray = MyMath.bidimentionalListSort(arrayList, 1);
     const lastKey = orderedArray[orderedArray.length - 1][0];
     const lastValue = orderedArray[orderedArray.length - 1][1];
     
@@ -131,8 +131,8 @@ PlatziMath.esImpar = function esImpar(lista) {
 }
 
 PlatziMath.calcularMediana = function calcularMediana(listaDesordenada) {
-    const lista = ordenarLista(listaDesordenada);
-    const listaEsPar = esPar(lista);
+    const lista = PlatziMath.ordenarLista(listaDesordenada);
+    const listaEsPar = PlatziMath.esPar(lista);
 
     if (listaEsPar) {
          const indexMitad1ListaPar = (lista.length /  2)  - 1;
@@ -154,7 +154,7 @@ PlatziMath.calcularMediana = function calcularMediana(listaDesordenada) {
         listaMitades.push(lista[indexMitad1ListaPar]);
         listaMitades.push(lista[indexMitad2ListaPar]);
 
-        const medianaListaPar = calcularPromedioReduce(listaMitades);
+        const medianaListaPar = PlatziMath.calcularPromedioReduce(listaMitades);
 
         return medianaListaPar;
     } else {
@@ -236,7 +236,7 @@ PlatziMath.calcularModa = function calcularModa(lista) {
     }
     
     const listaArray = Object.entries(listaCount);
-    const listaOrdenada = ordenarListaBidimensional(listaArray, 1);
+    const listaOrdenada = PlatziMath.ordenarListaBidimensional(listaArray, 1);
     const listaMaxNumber = listaOrdenada[listaOrdenada.length - 1];
     const moda = listaMaxNumber;
     // console.log({listaCount, listaArray, listaOrdenada, listaMaxNumber});
