@@ -61,7 +61,7 @@ MyMath.calculateMedian = function calculateMedian(...list) {
 
         const medianEvenList = centerIndexEvenList / 2;
 
-        return medianEvenList;
+        
 
     } else {
         //Central value
@@ -72,7 +72,29 @@ MyMath.calculateMedian = function calculateMedian(...list) {
         console.log(`Central index: ${centerIndexOddList}`);
         //console.log(medianOddList);
 
-        return medianOddList;
+        
+    }
+}
+MyMath.calculateMedianNoData = function calculateMedianNoData(...list) {
+    const orderedList = list.sort((a,b) => a - b);
+    const isListEven = MyMath.isArrayEven(...list);
+
+    if (isListEven) {
+        // Operation
+        const centerIndexEvenList = 
+        list[(list.length / 2) - 1] + 
+        list[(list.length / 2) ];
+
+        const medianEvenList = centerIndexEvenList / 2;
+
+        return medianEvenList
+  
+    } else {
+        //Central value
+        const centerIndexOddList = Math.floor(list.length / 2);
+        const medianOddList = list[centerIndexOddList];
+        
+        return medianOddList
     }
 }
 
