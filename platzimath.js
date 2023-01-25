@@ -70,7 +70,7 @@ MyMath.calculateMedian = function calculateMedian(...list) {
 
         //Result
         console.log(`Central index: ${centerIndexOddList}`);
-        console.log(medianOddList);
+        //console.log(medianOddList);
 
         return medianOddList;
     }
