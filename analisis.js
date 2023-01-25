@@ -43,7 +43,7 @@ function calculateGeometricMedian(quantities){
     return Math.pow(multiplied, 1 / root);
 }
 
-function payRaise(nombrePersona) {
+function payRiseGeoMedian(nombrePersona) {
     const trabajos = encontrarPersona(nombrePersona).trabajos;
 
     const salarios = trabajos.map(function (elemento) {
@@ -55,6 +55,24 @@ function payRaise(nombrePersona) {
     const result = Number(geoMedian + lastSalary).toFixed(2);
 
     return `Your next salary should increase to $${result}`
+}
+function payRisePercentage(salaries) {
+    let percentageIncrease = [];
+
+    for (i = 1; i < salaries.length; i++) {
+        const currentSalary = salaries[i];
+        const lastSalary = salaries[i - 1];
+        const rising = currentSalary - lastSalary;
+        const risePercentage = rising / lastSalary;
+
+        //Guard zero
+        if(risePercentage == 0) { continue; }
+        percentageIncrease.push(risePercentage);
+    }
+
+    const calculateMedianPercentage = MyMath.calculateMedianNoData(...percentageIncrease);
+
+    return calculateMedianPercentage
 }
 
 const companies = {}
@@ -98,8 +116,71 @@ function calculateMedianByYear(company, year) {
     } else {
         message = `The company "${companyName}" had no salary record on ${year}`
     }
+}
 
-    return message;
+//Mediana salarial para próximo año
+//Rango de mediana salarial más baja y más alta
+console.log(2)
+console.log(companies['Freelance']);
+
+function salaryProjection(company, quantNextYears) {
+    const companyPro = companies[company];
+    let currentYear = Number(Object.keys(companyPro)[Object.keys(companyPro).length - 1]);
+    let sortedYears = {};
+    let lowestSalaries = [];
+    let highestSalaries = [];
+    let message;
+
+    //Iterations
+    for (let i = 0; i < quantNextYears; i++) {
+        arrangeProjection();
+        calculateRise();
+        console.log(message);
+    }
+
+    //Methods
+    function arrangeProjection() {
+        
+        //Sorting quantities per year
+        Object.keys(companyPro).forEach( year => {
+            const sortedArray = MyMath.sortList(Object.values(companyPro[year]));
+            sortedYears[year] = sortedArray;
+            
+            lowestSalaries.push(sortedArray[0]);
+            highestSalaries.push(sortedArray[sortedArray.length - 1]);
+        });
+    }
+    
+    function calculateRise(lowest, highest) {
+        
+        //Sort lowest & highest salaries and median
+        lowestSalaries = MyMath.sortList(lowestSalaries);
+        highestSalaries = MyMath.sortList(highestSalaries);
+
+        const lowestMedian = MyMath.calculateMedianNoData(...lowestSalaries);
+        const highestMedian = MyMath.calculateMedianNoData(...highestSalaries);
+
+        //Rise Percentage
+        const lowestMedianPercentage = payRisePercentage(lowestSalaries);
+        const highestMedianPercentage = payRisePercentage(highestSalaries);
+
+        const lastSalaries = [lowestSalaries[lowestSalaries.length - 1],
+        highestSalaries[highestSalaries.length - 1]];
+        const riseLowest = lastSalaries[0] * lowestMedianPercentage;
+        const riseHighest = lastSalaries[1] * highestMedianPercentage;
+
+        const newLowest = Number((lastSalaries[0] + riseLowest).toFixed(2));
+        const newHighest = Number((lastSalaries[1] + riseHighest).toFixed(2));
+
+        //Iteration push
+        lowestSalaries.push(newLowest);
+        highestSalaries.push(newLowest);
+        currentYear += 1;
+
+        //Message Structure
+        message = `On year ${currentYear} "${company} company's" range of salaries will increase with a median of "$${newLowest}" to "$${newHighest}".`;
+    }
+    
 }
 
 ///////Solucion Profe///////
