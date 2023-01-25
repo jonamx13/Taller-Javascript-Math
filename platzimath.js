@@ -76,6 +76,12 @@ MyMath.calculateMedian = function calculateMedian(...list) {
     }
 }
 
+MyMath.sortList = function sortList(list) {
+
+    const  orderedList = list.sort((a,b) => a-b);
+
+    return orderedList;
+}
 MyMath.bidimentionalListSort = function bidimentionalListSort(list, arrayIndex) {
 
     const  orderedList = list.sort((a,b) => a[arrayIndex]-b[arrayIndex]);
