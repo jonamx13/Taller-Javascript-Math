@@ -182,7 +182,7 @@ PlatziMath.calcularMediana = function calcularMediana(listaDesordenada) {
         listaMitades.push(lista[indexMitad1ListaPar]);
         listaMitades.push(lista[indexMitad2ListaPar]);
 
-        const medianaListaPar = PlatziMath.calcularPromedioReduce(listaMitades);
+        const medianaListaPar = PlatziMath.calcularPromedio(listaMitades);
 
         return medianaListaPar;
     } else {
@@ -193,6 +193,17 @@ PlatziMath.calcularMediana = function calcularMediana(listaDesordenada) {
         return medianaListaImpar;
 
     }
+}
+
+PlatziMath.calcularPromedio = function calcularPromedio(lista) {
+    function sumarTodosElementos(valorAcumulado, nuevoValor) {
+        return valorAcumulado + nuevoValor;
+      }
+    
+      const sumaLista = lista.reduce(sumarTodosElementos);  
+      const promedio = sumaLista / lista.length;
+      // console.log(promedio);
+      return promedio;
 }
 
 PlatziMath.calcularPromedioReduce = function calcularPromedioReduce(lista) {
@@ -211,7 +222,7 @@ PlatziMath.calcularPromedioReduce = function calcularPromedioReduce(lista) {
     const sumaLista = lista.reduce(sumarTodosElementos); 
 
     const promedio = sumaLista / lista.length;
-    console.log(promedio);
+
     // return promedio;
 }
 
