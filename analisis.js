@@ -24,7 +24,7 @@ function medianaPorPersona(nombrePersona) {
 
     const medianaSalarios = PlatziMath.calcularMediana(salarios);
 
-    console.log(salarios);
+    return medianaSalarios;
 }
 
 ///////Mi solución///////
@@ -274,4 +274,37 @@ function proyeccionPorPersona(nombrePersona) {
 
         return nuevaMediana;
     }
+ }
+
+ //Análisis general
+ function medianaGeneral() {
+    const listaMedianas = salarios.map(persona => medianaPorPersona(persona.name));
+
+    const mediana = PlatziMath.calcularMediana(listaMedianas);
+
+    return mediana;
+ }
+
+ function medianaTop10() {
+    const listaMedianas = salarios.map(persona => medianaPorPersona(persona.name));
+
+    const medianasOrdenadas = PlatziMath.ordenarLista(listaMedianas)
+
+    const cantidad = listaMedianas.length / 10;
+    const result = medianasOrdenadas; // Mi solución
+    const limite = listaMedianas.length - cantidad;
+
+    const top10 = medianasOrdenadas.slice(limite, medianasOrdenadas.length);
+    // slice
+    // splice
+    
+
+    while(result.length > cantidad) { // Mi solución
+        result.shift();
+    }
+
+    const medianaTop10 = PlatziMath.calcularMediana(top10);
+    const medianaTopResult = MyMath.calculateMedianNoData(...result);
+
+    return {medianaTop10, medianaTopResult};
  }
